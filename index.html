@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="Copyright Roger Sandholm">
+    <meta name="author" content="Roger Sandholm">
+    <meta name="theme-color" content="#3ddca1">
+    <title>Roger Sandholm - Github.io</title>
+    <style type="text/css">
+
+        :root {
+            --main-bg-color: #f7f2ff;
+            --main-text-color: #24212f;
+
+            --main-link-color: #3a3fff;
+            --main-link-hover-color: #FFFFF7;
+
+            --main-btn-bg-color: #15a277;
+            --main-btn-hover-color: #68ffd1;
+
+            --primary-text-color: #099c6f;
+            --secondary-text-color: #3d259c;
+
+            --list-bg-color: #89ffd2;
+            --list-color: #0a6352;
+            --list-link-hover-color: #3e49dc;
+            --list-border-color: #d2d2d2;
+
+            --list-item-tag-color: #1d98a5;
+            --list-item-language-color: #e1b1f9;
+            --list-item-description-color: #132a2b;
+            --list-item-date-color: #6b1da5;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: var(--main-bg-color) !important;
+            font-family: roboto, Arial, Helvetica, sans-serif !important;
+            -webkit-font-smoothing: subpixel-antialiased;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            line-height: 1;
+            color: var(--main-text-color);
+        }
+        .conf-container {
+            margin: 30px auto;
+            padding: 20px 20px 20px 20px;
+            width:90vw;
+            max-width: 900px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .conf-username {
+            font-size: 5em;
+            font-weight: 600;
+            padding: 12vh 1vw 0 1vw;
+            line-height: 1;
+        }
+        .conf-name {
+            margin-top: 0;
+            margin-bottom: 10vh;
+            font-size: 1em;
+            line-height: 1;
+            font-weight: 600;
+            padding: 0 0 0 2vw;
+            color: var(--secondary-text-color);
+        }
+        .conf-headline {
+            margin-top: 5vh;
+            margin-bottom: 2vh;
+            font-size: 1.2em;
+            line-height: 1.5;
+            font-weight: 400;
+            color: var(--secondary-text-color);
+        }
+        a {
+            color: var(--main-link-color);
+            text-decoration: none;
+        }
+        a:hover {
+            color: var(--main-link-hover-color);
+            text-decoration: underline;
+        }
+        .appdatalist {
+            color: var(--list-color);
+            line-height: 2;
+            padding: 0.5vh 2vw;
+            margin: 0;
+            display: grid;
+            overflow: hidden;
+            grid-template-columns: 4fr 1fr 2fr;
+            grid-template-rows: 1fr auto;
+            border-top: 1px solid var(--list-border-color);
+        }
+        .appdatalist a {
+            font-weight: bold;
+        }
+        .appdatalist a:hover {
+            color: var(--list-link-hover-color);
+        }
+        .appdatalist--tag {
+            color: var(--list-item-tag-color);
+        }
+        .appdatalist--language {
+            color: var(--list-item-language-color);
+            text-align: right;
+        }
+        .appdatalist--description {
+            color: var(--list-item-description-color);
+            grid-column: 1 / 4;
+            font-size: 0.9rem;
+        }
+        .appdatalist--date {
+            color: var(--list-item-date-color);
+            text-align: right;
+        }
+
+    </style>
+</head>
+<body ng-app="srGithubApp" ng-controller="homeController">
+
+    <div class="conf-container">
+        <div class="conf-username">Roog</div>
+        <div class="conf-name">Roger Sandholm</div>
+
+        <div class="conf-headline">My Links</div>
+        <div>
+            <div class="appdatalist">
+                <a href="http://rogersandholm.com">rogersandholm.com</a>
+                <span class="appdatalist--language"> </span>
+                <span class="appdatalist--date"> </span>
+                <span class="appdatalist--description"> </span>
+            </div>
+            <div class="appdatalist">
+                <a href="https://codepen.io/roog">codepens.com/Roog</a>
+                <span class="appdatalist--language"> </span>
+                <span class="appdatalist--date"> </span>
+                <span class="appdatalist--description"> </span>
+            </div>
+        </div>
+
+        <div class="conf-headline">My repositories</div>
+        <div ng-repeat="repo in roogRepos | orderBy: 'fork'">
+            <div class="appdatalist" ng-if="repo.archived != true">
+                <a href="{{repo.html_url}}"><span class="appdatalist--tag">{{repo.fork ? "(fork) " : ""}}</span>{{repo.name}}</a>
+                <span class="appdatalist--language">{{repo.language ? repo.language: ""}}</span>
+                <span class="appdatalist--date">{{repo.updated_at | date:"yyyy-MM-dd HH:mm"}}</span>
+                <span class="appdatalist--description">{{repo.description}}</span>
+            </div>
+        </div>
+
+        <div class="conf-headline">My gists</div>
+        <div ng-repeat="repo in roogGists">
+            <div class="appdatalist" ng-if="repo.archived != true">
+                <a href="{{repo.html_url}}"><span class="appdatalist--tag">{{repo.fork ? "(fork) " : ""}}</span>{{repo.name}}</a>
+                <span class="appdatalist--language">{{repo.language ? repo.language: ""}}</span>
+                <span class="appdatalist--date">{{repo.updated_at | date:"yyyy-MM-dd HH:mm"}}</span>
+                <span class="appdatalist--description">{{repo.description}}</span>
+            </div>
+        </div>
+
+        <div class="conf-headline">Open Source Contributions - Iris Broadcast</div>
+        <div ng-repeat="repo in irisRepos | orderBy: 'fork'">
+            <div class="appdatalist" ng-if="repo.archived != true">
+                <a href="{{repo.html_url}}"><span class="appdatalist--tag">{{repo.fork ? "(fork) " : ""}}</span>{{repo.name}}</a>
+                <span class="appdatalist--language">{{repo.language ? repo.language: ""}}</span>
+                <span class="appdatalist--date">{{repo.updated_at | date:"yyyy-MM-dd HH:mm"}}</span>
+                <span class="appdatalist--description">{{repo.description}}</span>
+            </div>
+        </div>
+        </br></br>
+        </br></br>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+
+    <script>
+    var app = angular.module("srGithubApp", ["ngRoute"]);
+
+    app.controller("homeController", function($scope, $http) {
+        $scope.roogRepos = [];
+        $scope.roogGists = [];
+        $scope.irisRepos = [];
+
+        getMeSomeJsonData("https://api.github.com/users/roog/repos",
+            function(response) {
+                $scope.roogRepos = response.data;
+            },
+            function(response) {
+                $scope.roogRepos = [];
+            });
+
+        getMeSomeJsonData("https://api.github.com/users/roog/gists",
+            function(response) {
+                response.data.forEach((element) => {
+                    element.name = Object.keys(element.files)[0] || "No title";
+                });
+                $scope.roogGists = response.data;
+            },
+            function(response) {
+                $scope.roogGists = [];
+            });
+
+        getMeSomeJsonData("https://api.github.com/orgs/irisbroadcast/repos",
+            function(response) {
+                $scope.irisRepos = response.data;
+            },
+            function(response) {
+                $scope.irisRepos = [];
+            });
+
+        function getMeSomeJsonData(path, successCallback, errorCallback) {
+            $http({
+                method: "GET",
+                url:    path
+            }).then(successCallback,errorCallback);
+
+            // fetch({
+            //     method: "GET",
+            //     url:    path
+            // }).then(successCallback).catch(errorCallback);
+        }
+    });
+    </script>
+</body>
+</html>
