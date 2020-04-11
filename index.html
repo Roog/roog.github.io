@@ -127,7 +127,7 @@
         <div class="conf-username">Roog</div>
         <div class="conf-name">Roger Sandholm</div>
 
-        <div class="conf-headline">My Links</div>
+        <div class="conf-headline">My links</div>
         <div>
             <div class="appdatalist">
                 <a href="http://rogersandholm.com">rogersandholm.com</a>
@@ -163,7 +163,7 @@
             </div>
         </div>
 
-        <div class="conf-headline">Open Source Contributions - Iris Broadcast</div>
+        <div class="conf-headline">Open source contributions - Iris Broadcast</div>
         <div ng-repeat="repo in irisRepos | orderBy: 'fork'">
             <div class="appdatalist" ng-if="repo.archived != true">
                 <a href="{{repo.html_url}}"><span class="appdatalist--tag">{{repo.fork ? "(fork) " : ""}}</span>{{repo.name}}</a>
