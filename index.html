@@ -32,7 +32,6 @@
             --list-item-description-color: #132a2b;
             --list-item-date-color: #6b1da5;
         }
-
         body, html {
             margin: 0;
             padding: 0;
@@ -54,9 +53,7 @@
             border-radius: 10px;
         }
         .conf-picture {
-            background: url('roger.jpg') cover no-repeat;
-            width: 60px;
-            height: 60px;
+
         }
         .conf-username {
             font-size: 5em;
@@ -127,7 +124,16 @@
 <body ng-app="srGithubApp" ng-controller="homeController">
 
     <div class="conf-container">
-        <div class="conf-picture"></div>
+        <div class="conf-picture">
+            <svg height="200" width="200">
+                <image xlink:href="roger.jpg" x="0" y="0" width="200" height="200"></image>
+                <defs>
+                    <clipPath id="svgPath" clipPathUnits="objectBoundingBox">
+                        <path d="M48.3,-44.4C52.6,-33.2,39,-13.7,32.6,4.5C26.1,22.8,26.7,39.8,19,46C11.3,52.2,-4.8,47.8,-18,40.3C-31.3,32.8,-41.8,22.4,-48.3,7.2C-54.9,-8,-57.5,-28,-48.8,-40.2C-40.1,-52.3,-20,-56.7,1,-57.5C22,-58.3,44.1,-55.5,48.3,-44.4Z" transform="translate(100 100)" />
+                    </clipPath>
+                </defs>
+            </svg>
+        </div>
         <div class="conf-username">Roog</div>
         <div class="conf-name">Roger Sandholm</div>
 
